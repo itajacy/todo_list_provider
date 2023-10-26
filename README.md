@@ -1,16 +1,14 @@
 # todo_list_provider
 
-A new Flutter project.
+módulo HANDS ON Todo List com Provider do curso da Academia do Flutter
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Este projeto é de um aplicativo do tipo "TODO LIST"  que é para criar e
+controlar uma lista de tarefas.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
+  For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
