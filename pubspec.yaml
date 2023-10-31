@@ -35,7 +35,7 @@ dependencies:
   path: ^1.8.3
   sign_in_button: ^3.0.0
   google_fonts: ^6.1.0
-  flutter_signin_button: ^2.0.0
+  # flutter_signin_button: ^2.0.0
 
 
   # The following adds the Cupertino Icons font to your application.
