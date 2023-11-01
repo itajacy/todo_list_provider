@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list_provider/app/core/ui/todo_list_icons.dart';
 
 class TodoListField extends StatelessWidget {
   final String label;
@@ -27,6 +28,13 @@ class TodoListField extends StatelessWidget {
           borderSide: BorderSide(color: Colors.red),
         ),
         isDense: true, //torna mais denso, os formulários ficam mais próximos
+        suffixIcon: IconButton(
+          onPressed: () {},
+          icon: Icon(
+            TodoListIcons.eye,
+            size: 15,
+          ),
+        ),
       ),
       obscureText: obscureText,
     );
