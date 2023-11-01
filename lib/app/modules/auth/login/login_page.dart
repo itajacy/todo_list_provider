@@ -31,6 +31,7 @@ class LoginPage extends StatelessWidget {
                           SizedBox(height: 20),
                           TodoListField(
                             label: 'Senha',
+                            obscureText: true,
                           ),
                           SizedBox(height: 10),
                           Row(
@@ -79,6 +80,7 @@ class LoginPage extends StatelessWidget {
                           SignInButton(
                             Buttons.google,
                             elevation: 4.0,
+//! O texto "Continue com o Google", não cabe estoura em 12px
                             text: 'Cont. com o Google',
                             padding: const EdgeInsets.all(5),
                             shape: OutlineInputBorder(
