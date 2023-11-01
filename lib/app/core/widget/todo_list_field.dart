@@ -1,15 +1,27 @@
 import 'package:flutter/material.dart';
 
 class TodoListField extends StatelessWidget {
-  const TodoListField({super.key});
+  final String label;
+
+  TodoListField({Key? key, required this.label}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       decoration: InputDecoration(
-          border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(30),
-      )),
+        labelText: label,
+        labelStyle: TextStyle(
+          fontSize: 15,
+          color: Colors.black,
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(30),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(30),
+          borderSide: BorderSide(color: Colors.red),
+        ),
+      ),
     );
   }
 }
