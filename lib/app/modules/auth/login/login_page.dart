@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sign_in_button/sign_in_button.dart';
+import 'package:todo_list_provider/app/core/widget/todo_list_field.dart';
 import 'package:todo_list_provider/app/core/widget/todo_list_logo.dart';
 
 class LoginPage extends StatelessWidget {
@@ -24,9 +25,9 @@ class LoginPage extends StatelessWidget {
                     child: Form(
                       child: Column(
                         children: [
-                          TextFormField(),
+                          TodoListField(),
                           SizedBox(height: 20),
-                          TextFormField(),
+                          TodoListField(),
                           SizedBox(height: 10),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -73,7 +74,8 @@ class LoginPage extends StatelessWidget {
                           ),
                           SignInButton(
                             Buttons.google,
-                            text: 'Continue com o Google',
+                            elevation: 4.0,
+                            text: 'Cont. com o Google',
                             padding: const EdgeInsets.all(5),
                             shape: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
