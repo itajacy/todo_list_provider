@@ -11,6 +11,7 @@ class RegisterPage extends StatelessWidget {
         leading: IconButton(
           onPressed: () {
             Navigator.of(context).pop();
+            minuto 3:12
           },
           icon: ClipOval(
             child: Container(
