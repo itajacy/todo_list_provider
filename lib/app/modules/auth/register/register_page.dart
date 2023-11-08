@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list_provider/app/core/ui/theme_extensions.dart';
+import 'package:todo_list_provider/app/core/widget/todo_list_logo.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
@@ -37,7 +38,18 @@ class RegisterPage extends StatelessWidget {
           ),
         ),
       ),
-      body: Container(),
+      body: ListView(
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.width * .50,
+            child: FittedBox(
+              //! caso a tela seja menor a imagem irá diminuir junto
+              child: TodoListLogo(),
+              fit: BoxFit.fitHeight,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
