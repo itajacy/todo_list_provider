@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_list_provider/app/core/database/sqlite_adm_connection.dart';
 import 'package:todo_list_provider/app/core/ui/todo_list_ui_config.dart';
@@ -19,6 +20,7 @@ class _AppWidgetState extends State<AppWidget> {
     super.initState();
     //*com isso abaixo estamos controlando o observer da nossa página
     //* adicionando o ciclo de vida na nossa aplicação
+    FirebaseAuth auth = FirebaseAuth.instance;
     WidgetsBinding.instance.addObserver(sqliteAdmConnection);
   }
 
