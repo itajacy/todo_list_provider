@@ -1,12 +1,19 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
+import 'package:todo_list_provider/app/repositories/user/user_repository.dart';
+
 import './user_service.dart';
 
 class UserServiceImpl implements UserService {
-  @override
-  Future<User?> register(String email, String password) {
-    // TODO: implement register
-    throw UnimplementedError();
-  }
 
+ //! fazendo como nas duas linhas abaixo estaremos encapsulando e deixando mais segura.
+ //! pois quem tem acesso a essa classe não terá acesso ao REpository
+  final UserRepository _userRepository;
+
+  UserServiceImpl({required UserRepository userRepository}) : _userRepository = userRepository;
+
+  
+
+  @override
+  Future<User?> register(String email, String password) => _userRepository.register(email, password);
 }
