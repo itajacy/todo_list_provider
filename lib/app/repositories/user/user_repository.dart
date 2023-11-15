@@ -1,5 +1,7 @@
-import './user_repository.dart';
 
-class UserRepository implements UserRepository {
 
+import 'package:firebase_auth/firebase_auth.dart';
+
+abstract class UserRepository {
+  Future<User?> register(String email, String password);
 }
