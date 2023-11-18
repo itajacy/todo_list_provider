@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list_provider/app/core/ui/theme_extensions.dart';
+import 'package:todo_list_provider/app/core/validators/validators.dart';
 import 'package:todo_list_provider/app/core/widget/todo_list_field.dart';
 import 'package:todo_list_provider/app/core/widget/todo_list_logo.dart';
 import 'package:validatorless/validatorless.dart';
@@ -104,7 +105,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       obscureText: true,
                       controller: confirmPasswordEC,
                       validator: Validatorless.multiple([
-                        Validatorless.required('Senha obrigtatória'),
+                        Validatorless.required('Confirma Senha obrigtatória'),
+                        Validators.compare(passwordEC, 'Senha diferente de confirma senha'),
                       ]),
                     ),
                     SizedBox(
