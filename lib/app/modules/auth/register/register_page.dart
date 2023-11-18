@@ -14,15 +14,15 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
-  final emailEC = TextEditingController();
-  final passwordEC = TextEditingController();
-  final confirmPasswordEC = TextEditingController();
+  final _emailEC = TextEditingController();
+  final _passwordEC = TextEditingController();
+  final _confirmPasswordEC = TextEditingController();
 
   @override
   void dispose() {
-    emailEC.dispose();
-    passwordEC.dispose();
-    confirmPasswordEC.dispose();
+    _emailEC.dispose();
+    _passwordEC.dispose();
+    _confirmPasswordEC.dispose();
     super.dispose();
   }
 
@@ -59,8 +59,7 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
         ),
       ),
-      body: Form(
-        child: ListView(
+      body: ListView(
           children: [
             Container(
               height: MediaQuery.of(context).size.width * .50,
@@ -78,7 +77,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   children: [
                     TodoListField(
                       label: 'E-mail',
-                      controller: emailEC,
+                      controller: _emailEC,
                       validator: Validatorless.multiple([
                         Validatorless.required('E-mail obrigatório'),
                         Validatorless.email('E-mail inválido')
@@ -90,7 +89,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     TodoListField(
                       label: 'Senha',
                       obscureText: true,
-                      controller: passwordEC,
+                      controller: _passwordEC,
                       validator: Validatorless.multiple([
                         Validatorless.required('Senha obrigatória'),
                         Validatorless.min(
@@ -103,10 +102,10 @@ class _RegisterPageState extends State<RegisterPage> {
                     TodoListField(
                       label: 'Confirma Senha',
                       obscureText: true,
-                      controller: confirmPasswordEC,
+                      controller: _confirmPasswordEC,
                       validator: Validatorless.multiple([
                         Validatorless.required('Confirma Senha obrigtatória'),
-                        Validators.compare(passwordEC, 'Senha diferente de confirma senha'),
+                        Validators.compare(_passwordEC, 'Senha diferente de confirma senha'),
                       ]),
                     ),
                     SizedBox(
@@ -115,7 +114,9 @@ class _RegisterPageState extends State<RegisterPage> {
                     Align(
                       alignment: Alignment.bottomRight,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          final formValid = _formKey.currentState?.validate() ?? false;
+                        },
                         child: Padding(
                           padding: EdgeInsets.all(10.0),
                           child: Text('Salvar'),
@@ -133,7 +134,7 @@ class _RegisterPageState extends State<RegisterPage> {
             )
           ],
         ),
-      ),
+       //form
     );
   }
 }
