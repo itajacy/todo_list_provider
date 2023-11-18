@@ -3,11 +3,28 @@ import 'package:todo_list_provider/app/core/ui/theme_extensions.dart';
 import 'package:todo_list_provider/app/core/widget/todo_list_field.dart';
 import 'package:todo_list_provider/app/core/widget/todo_list_logo.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
 
-  final _formKey = GlobalKey<FormState>();
 
   RegisterPage({super.key});
+
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+  final _formKey = GlobalKey<FormState>();
+  final emailEC = TextEditingController();
+  final passwordEC = TextEditingController();
+  final confirmPasswordEC = TextEditingController();
+
+@override
+  void dispose() {
+    emailEC.dispose();
+    passwordEC.dispose();
+    confirmPasswordEC.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +74,7 @@ class RegisterPage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
               child: Form(
+                key: _formKey,
                 child: Column(
                   children: [
                     TodoListField(label: 'E-mail'),
