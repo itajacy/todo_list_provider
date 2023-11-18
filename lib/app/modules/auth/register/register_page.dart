@@ -115,6 +115,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       alignment: Alignment.bottomRight,
                       child: ElevatedButton(
                         onPressed: () {
+                          //! criada a linha abaixo para validar o formulario e testar
                           final formValid = _formKey.currentState?.validate() ?? false;
                         },
                         child: Padding(
