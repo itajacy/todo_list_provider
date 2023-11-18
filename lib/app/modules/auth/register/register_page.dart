@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_list_provider/app/core/ui/theme_extensions.dart';
 import 'package:todo_list_provider/app/core/widget/todo_list_field.dart';
 import 'package:todo_list_provider/app/core/widget/todo_list_logo.dart';
+import 'package:validatorless/validatorless.dart';
 
 class RegisterPage extends StatefulWidget {
   RegisterPage({super.key});
@@ -77,6 +78,10 @@ class _RegisterPageState extends State<RegisterPage> {
                     TodoListField(
                       label: 'E-mail',
                       controller: emailEC,
+                      validator: Validatorless.multiple([
+                        Validatorless.required('E-mail obrigatório'),
+                        Validatorless.email('E-mail inválido')
+                      ]),
                     ),
                     SizedBox(
                       height: 20,
@@ -85,6 +90,11 @@ class _RegisterPageState extends State<RegisterPage> {
                       label: 'Senha',
                       obscureText: true,
                       controller: passwordEC,
+                      validator: Validatorless.multiple([
+                        Validatorless.required('Senha obrigatória'),
+                        Validatorless.min(
+                            6, 'Senha deve ter pelo menos 6 caracteres'),
+                      ]),
                     ),
                     SizedBox(
                       height: 20,
@@ -93,6 +103,9 @@ class _RegisterPageState extends State<RegisterPage> {
                       label: 'Confirma Senha',
                       obscureText: true,
                       controller: confirmPasswordEC,
+                      validator: Validatorless.multiple([
+                        Validatorless.required('Senha obrigtatória'),
+                      ]),
                     ),
                     SizedBox(
                       height: 20,
