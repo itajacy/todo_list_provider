@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_list_provider/app/core/ui/theme_extensions.dart';
 import 'package:todo_list_provider/app/core/validators/validators.dart';
 import 'package:todo_list_provider/app/core/widget/todo_list_field.dart';
 import 'package:todo_list_provider/app/core/widget/todo_list_logo.dart';
+import 'package:todo_list_provider/app/modules/auth/register/register_controller.dart';
 import 'package:validatorless/validatorless.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -23,7 +25,27 @@ class _RegisterPageState extends State<RegisterPage> {
     _emailEC.dispose();
     _passwordEC.dispose();
     _confirmPasswordEC.dispose();
+    // context.read<RegisterController>().removeListener(() { });
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    
+    super.initState();
+
+    context.read<RegisterController>().addListener(() {
+      final controller = context.read<RegisterController>();
+      var success = controller.success;
+      var error = controller.error;
+
+
+      if (success) {
+        Navigator.of(context).pop();
+      } else if (error != null && error.isNotEmpty){
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error),backgroundColor: Colors.red,),);
+      }
+    });
   }
 
   @override
@@ -117,6 +139,12 @@ class _RegisterPageState extends State<RegisterPage> {
                         onPressed: () {
                           //! criada a linha abaixo para validar o formulario e testar
                           final formValid = _formKey.currentState?.validate() ?? false;
+                          if (formValid) {
+                            final email = _emailEC.text;
+                            final password = _passwordEC.text;
+
+                            context.read<RegisterController>().registerUser(email, password);
+                          }
                         },
                         child: Padding(
                           padding: EdgeInsets.all(10.0),
