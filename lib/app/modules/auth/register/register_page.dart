@@ -4,7 +4,10 @@ import 'package:todo_list_provider/app/core/widget/todo_list_field.dart';
 import 'package:todo_list_provider/app/core/widget/todo_list_logo.dart';
 
 class RegisterPage extends StatelessWidget {
-  const RegisterPage({super.key});
+
+  final _formKey = GlobalKey<FormState>();
+
+  RegisterPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,59 +42,62 @@ class RegisterPage extends StatelessWidget {
           ),
         ),
       ),
-      body: ListView(
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.width * .50,
-            child: FittedBox(
-              //! caso a tela seja menor a imagem irá diminuir junto
-              child: TodoListLogo(),
-              fit: BoxFit.fitHeight,
+      body: Form(
+
+        child: ListView(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.width * .50,
+              child: FittedBox(
+                //! caso a tela seja menor a imagem irá diminuir junto
+                child: TodoListLogo(),
+                fit: BoxFit.fitHeight,
+              ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-            child: Form(
-              child: Column(
-                children: [
-                  TodoListField(label: 'E-mail'),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TodoListField(
-                    label: 'Senha',
-                    obscureText: true,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TodoListField(
-                    label: 'Confirma Senha',
-                    obscureText: true,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Align(
-                    alignment: Alignment.bottomRight,
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: Text('Salvar'),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+              child: Form(
+                child: Column(
+                  children: [
+                    TodoListField(label: 'E-mail'),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TodoListField(
+                      label: 'Senha',
+                      obscureText: true,
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TodoListField(
+                      label: 'Confirma Senha',
+                      obscureText: true,
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        child: Padding(
+                          padding: EdgeInsets.all(10.0),
+                          child: Text('Salvar'),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
