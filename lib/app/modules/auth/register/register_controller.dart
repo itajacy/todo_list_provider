@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
 import 'package:todo_list_provider/app/exception/auth_exception.dart';
 import 'package:todo_list_provider/app/services/user/user_service.dart';
 
@@ -17,9 +20,15 @@ class RegisterController extends ChangeNotifier {
   success = false;
   notifyListeners();
   final user = await _userService.register(email, password);
+
+  print('CONTEUDO DE user --> $user');
+  print('USER NÃO É NULO = ${user != null}');
+
   if (user != null) {
     // sucesso
     success = true;
+    print('sucesso = TRUE');
+   
   } else {
     // erro
     error = 'Erro ao registrar o usuário!';
@@ -31,4 +40,7 @@ class RegisterController extends ChangeNotifier {
 
 }
   }
+
+  @override
+  String toString() => 'RegisterController(_userService: $_userService, error: $error, success: $success)';
 }

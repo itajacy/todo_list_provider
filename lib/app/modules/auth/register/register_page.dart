@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_list_provider/app/core/ui/theme_extensions.dart';
@@ -25,25 +26,33 @@ class _RegisterPageState extends State<RegisterPage> {
     _emailEC.dispose();
     _passwordEC.dispose();
     _confirmPasswordEC.dispose();
-    // context.read<RegisterController>().removeListener(() { });
+   // context.read<RegisterController>().removeListener(() { });
     super.dispose();
   }
 
   @override
   void initState() {
-    
     super.initState();
 
     context.read<RegisterController>().addListener(() {
       final controller = context.read<RegisterController>();
+      
       var success = controller.success;
       var error = controller.error;
-
-
+      print('CONTEUDO DE success fora do IF: $success'); 
+      print(controller.toString());
       if (success) {
+        //! em caso de sucesso = true, não está executando nenhuma das linhas abaixo
+        print('CONTEUDO DE SUCCESS dentro do IF: $success'); 
         Navigator.of(context).pop();
-      } else if (error != null && error.isNotEmpty){
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error),backgroundColor: Colors.red,),);
+       
+      } else if (error != null && error.isNotEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(error),
+            backgroundColor: Colors.red,
+          ),
+        );
       }
     });
   }
@@ -82,88 +91,92 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
       ),
       body: ListView(
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.width * .50,
-              child: FittedBox(
-                //! caso a tela seja menor a imagem irá diminuir junto
-                child: TodoListLogo(),
-                fit: BoxFit.fitHeight,
-              ),
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.width * .50,
+            child: FittedBox(
+              //! caso a tela seja menor a imagem irá diminuir junto
+              child: TodoListLogo(),
+              fit: BoxFit.fitHeight,
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    TodoListField(
-                      label: 'E-mail',
-                      controller: _emailEC,
-                      validator: Validatorless.multiple([
-                        Validatorless.required('E-mail obrigatório'),
-                        Validatorless.email('E-mail inválido')
-                      ]),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    TodoListField(
-                      label: 'Senha',
-                      obscureText: true,
-                      controller: _passwordEC,
-                      validator: Validatorless.multiple([
-                        Validatorless.required('Senha obrigatória'),
-                        Validatorless.min(
-                            6, 'Senha deve ter pelo menos 6 caracteres'),
-                      ]),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    TodoListField(
-                      label: 'Confirma Senha',
-                      obscureText: true,
-                      controller: _confirmPasswordEC,
-                      validator: Validatorless.multiple([
-                        Validatorless.required('Confirma Senha obrigtatória'),
-                        Validators.compare(_passwordEC, 'Senha diferente de confirma senha'),
-                      ]),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Align(
-                      alignment: Alignment.bottomRight,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          //! criada a linha abaixo para validar o formulario e testar
-                          final formValid = _formKey.currentState?.validate() ?? false;
-                          if (formValid) {
-                            final email = _emailEC.text;
-                            final password = _passwordEC.text;
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  TodoListField(
+                    label: 'E-mail',
+                    controller: _emailEC,
+                    validator: Validatorless.multiple([
+                      Validatorless.required('E-mail obrigatório'),
+                      Validatorless.email('E-mail inválido')
+                    ]),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  TodoListField(
+                    label: 'Senha',
+                    obscureText: true,
+                    controller: _passwordEC,
+                    validator: Validatorless.multiple([
+                      Validatorless.required('Senha obrigatória'),
+                      Validatorless.min(
+                          6, 'Senha deve ter pelo menos 6 caracteres'),
+                    ]),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  TodoListField(
+                    label: 'Confirma Senha',
+                    obscureText: true,
+                    controller: _confirmPasswordEC,
+                    validator: Validatorless.multiple([
+                      Validatorless.required('Confirma Senha obrigtatória'),
+                      Validators.compare(
+                          _passwordEC, 'Senha diferente de confirma senha'),
+                    ]),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        //! criada a linha abaixo para validar o formulario e testar
+                        final formValid =
+                            _formKey.currentState?.validate() ?? false;
+                        if (formValid) {
+                          final email = _emailEC.text;
+                          final password = _passwordEC.text;
 
-                            context.read<RegisterController>().registerUser(email, password);
-                          }
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: Text('Salvar'),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
+                          context
+                              .read<RegisterController>()
+                              .registerUser(email, password);
+                        }
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: Text('Salvar'),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            )
-          ],
-        ),
-       //form
+            ),
+          )
+        ],
+      ),
+      //form
     );
   }
 }
