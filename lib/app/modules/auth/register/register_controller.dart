@@ -1,46 +1,44 @@
 import 'dart:async';
 
 // import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
+import 'package:todo_list_provider/app/core/notifier/default_change_notifier.dart';
 
 import 'package:todo_list_provider/app/exception/auth_exception.dart';
 import 'package:todo_list_provider/app/services/user/user_service.dart';
 
-class RegisterController extends ChangeNotifier {
+class RegisterController extends DefaultChangeNotifier {
   final UserService _userService;
-  String? error;
-  bool success = false;
 
   RegisterController({required UserService userService})
       : _userService = userService;
 
   Future<void> registerUser(String email, String password) async {
     try {
-  error = null;
-  success = false;
-  notifyListeners();
-  final user = await _userService.register(email, password);
+     showLoadingAndResetState();
+      notifyListeners();
+      final user = await _userService.register(email, password);
 
-  print('CONTEUDO DE user --> $user');
-  print('USER NÃO É NULO = ${user != null}');
+      // print('CONTEUDO DE user --> $user');
+      // print('USER NÃO É NULO = ${user != null}');
 
-  if (user != null) {
-    // sucesso
-    success = true;
-    print('sucesso = TRUE');
-   
-  } else {
-    // erro
-    error = 'Erro ao registrar o usuário!';
-  }
-} on AuthException catch (e) {
-  error = e.message;
-  notifyListeners();
-} finally {
-
-}
+      if (user != null) {
+        // sucesso
+        success();
+        // print('sucesso = TRUE');
+      } else {
+        // erro
+        setError('Erro ao registrar o usuário!');
+      }
+    } on AuthException catch (e) {
+      setError(e.message);
+      
+    } finally {
+      hideLoading();
+      notifyListeners();
+    }
   }
 
   @override
-  String toString() => 'RegisterController(_userService: $_userService, error: $error, success: $success)';
+  String toString() =>
+      'RegisterController(_userService: $_userService, error: $error, success: $success)';
 }
