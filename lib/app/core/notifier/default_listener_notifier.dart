@@ -12,9 +12,11 @@ class DefaultListenerNotifier {
 
   // método que será usado para escutar
 
-  void listener(BuildContext context) {
+  void listener({
+    required BuildContext context,
+    required SuccessVoidCAllback successCallback,
+  }) {
     changeNotifier.addListener(() {
-
       if (changeNotifier.loading) {
         Loader.show(context);
       } else {
@@ -25,7 +27,17 @@ class DefaultListenerNotifier {
         Messages.of(context).showError(changeNotifier.error ?? 'Erro interno');
       } else if (changeNotifier.isSuccess) {
         // alguma coisa em caso de sucesso
+        successCallback(changeNotifier, this);
       }
     });
   }
+
+  void dispose() {
+    changeNotifier.removeListener(() {});
+  }
 }
+
+typedef SuccessVoidCAllback = void Function(
+    DefaultChangeNotifier notifier, DefaultListenerNotifier listenerInstance);
+typedef ErrorVoidCAllback = void Function(
+    DefaultChangeNotifier notifier, DefaultListenerNotifier listenerInstance);

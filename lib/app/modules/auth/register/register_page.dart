@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_list_provider/app/core/notifier/default_listener_notifier.dart';
 import 'package:todo_list_provider/app/core/ui/theme_extensions.dart';
 import 'package:todo_list_provider/app/core/validators/validators.dart';
 import 'package:todo_list_provider/app/core/widget/todo_list_field.dart';
@@ -26,35 +26,44 @@ class _RegisterPageState extends State<RegisterPage> {
     _emailEC.dispose();
     _passwordEC.dispose();
     _confirmPasswordEC.dispose();
-   // context.read<RegisterController>().removeListener(() { });
+    // context.read<RegisterController>().removeListener(() { });
     super.dispose();
   }
 
   @override
   void initState() {
     super.initState();
-
-    context.read<RegisterController>().addListener(() {
-      final controller = context.read<RegisterController>();
-      
-      var success = controller.success;
-      var error = controller.error;
-      print('CONTEUDO DE success fora do IF: $success'); 
-      print(controller.toString());
-      if (success) {
-        //! em caso de sucesso = true, não está executando nenhuma das linhas abaixo
-        print('CONTEUDO DE SUCCESS dentro do IF: $success'); 
+    final defaultListener = DefaultListenerNotifier(
+        changeNotifier: context.read<RegisterController>());
+    defaultListener.listener(
+      context: context,
+      successCallback: (notifier, listenerInstance) {
+        listenerInstance.dispose();
         Navigator.of(context).pop();
-       
-      } else if (error != null && error.isNotEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(error),
-            backgroundColor: Colors.red,
-          ),
-        );
-      }
-    });
+      },
+    );
+
+    // context.read<RegisterController>().addListener(() {
+    //   final controller = context.read<RegisterController>();
+
+    //   var success = controller.success;
+    //   var error = controller.error;
+    //   print('CONTEUDO DE success fora do IF: $success');
+    //   print(controller.toString());
+    //   if (success) {
+    //     //! em caso de sucesso = true, não está executando nenhuma das linhas abaixo
+    //     print('CONTEUDO DE SUCCESS dentro do IF: $success');
+    //     Navigator.of(context).pop();
+
+    //   } else if (error != null && error.isNotEmpty) {
+    //     ScaffoldMessenger.of(context).showSnackBar(
+    //       SnackBar(
+    //         content: Text(error),
+    //         backgroundColor: Colors.red,
+    //       ),
+    //     );
+    //   }
+    // });
   }
 
   @override

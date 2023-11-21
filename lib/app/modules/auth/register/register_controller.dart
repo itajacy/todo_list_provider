@@ -34,6 +34,8 @@ class RegisterController extends DefaultChangeNotifier {
       
     } finally {
       hideLoading();
+      //! o notifyListerners() abaixo estava na linha antes do finally
+      //! por isso não estava indo para a pagina de login
       notifyListeners();
     }
   }
