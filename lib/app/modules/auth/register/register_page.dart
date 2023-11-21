@@ -41,6 +41,9 @@ class _RegisterPageState extends State<RegisterPage> {
         listenerInstance.dispose();
         Navigator.of(context).pop();
       },
+      errorCallback: (notifier, listenerInstance) {
+        // print('Deu ruim!');
+      },
     );
 
     // context.read<RegisterController>().addListener(() {
