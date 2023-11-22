@@ -5,13 +5,18 @@ import 'package:todo_list_provider/app/repositories/user/user_repository.dart';
 import './user_service.dart';
 
 class UserServiceImpl implements UserService {
-
- //! fazendo como nas duas linhas abaixo estaremos encapsulando e deixando mais segura.
- //! pois quem tem acesso a essa classe não terá acesso ao REpository
+  //! fazendo como nas duas linhas abaixo estaremos encapsulando e deixando mais segura.
+  //! pois quem tem acesso a essa classe não terá acesso ao REpository
   final UserRepository _userRepository;
 
-  UserServiceImpl({required UserRepository userRepository}) : _userRepository = userRepository;
+  UserServiceImpl({required UserRepository userRepository})
+      : _userRepository = userRepository;
 
   @override
-  Future<User?> register(String email, String password) => _userRepository.register(email, password);
+  Future<User?> register(String email, String password) =>
+      _userRepository.register(email, password);
+
+  @override
+  Future<User?> login(String email, String password) =>
+      _userRepository.register(email, password);
 }
