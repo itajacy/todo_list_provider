@@ -79,7 +79,9 @@ class _LoginPageState extends State<LoginPage> {
                               TextButton(
                                 onPressed: () {
                                   if (_emailEC.text.isNotEmpty) {
-                                    // RecuperarSenha
+                                    context
+                                        .read<LoginController>()
+                                        .forgotPassword(_emailEC.text);
                                   } else {
                                     _emailFocus.requestFocus();
                                     Messages.of(context).showError(
