@@ -40,10 +40,9 @@ class LoginController extends DefaultChangeNotifier {
       notifyListeners();
       await _userService.forgotPassword(email);
       infoMessage = 'Reset de senha enviado para o seu e-mail';
-    } catch (e) {
-      if (e is AuthException) {
+    } on AuthException catch(e){
         setError(e.message);
-      }
+    } catch (e) {
       setError('Erro ao resetar a senha');
     } finally {
       hideLoading();
