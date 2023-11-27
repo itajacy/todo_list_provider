@@ -50,7 +50,7 @@ class UserRepositoryImpl implements UserRepository {
     } on FirebaseAuthException catch (e, s) {
       print(e);
       print(s);
-      if (e.code == 'wrong-password') {
+      if (e.code == 'wrong-password' || e.code == 'user-not-found') {
         throw AuthException(message: 'Login ou senha inválidos!');
       }
       throw AuthException(message: e.message ?? 'Erro ao realizar o Login');
