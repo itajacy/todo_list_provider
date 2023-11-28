@@ -19,18 +19,24 @@ class UserRepositoryImpl implements UserRepository {
       print(e);
       print(s);
       if (e.code == 'email-already-in-use') {
-        final loginTypes =
-            await _firebaseAuth.fetchSignInMethodsForEmail(email);
+        final loginTypes = await _firebaseAuth
+            .fetchSignInMethodsForEmail(email)
+            .timeout(Duration(seconds: 3));
+        //!  como fazer para esperar um tempo para rodar
 
+        print('LOGINTYPES com e.code = email-already-in-use --> $loginTypes');
         if (loginTypes.contains('password')) {
+          print('LOGINTYPES.contains(password) --> $loginTypes');
           throw AuthException(
               message: 'E-mail já utilizado, por favor escolha outro e-mail');
         } else {
+          print('LOGINTYPES ELSE .contains(password) --> $loginTypes');
           throw AuthException(
               message:
                   'Você se cadastrou no TodoList pelo Google, por favor utilize ele para entrar');
         }
       } else {
+        print('e.code != email-already-in-use ==>> $e');
         throw AuthException(
             message: e.message ?? "Erro ao registrar o usuário!");
       }
