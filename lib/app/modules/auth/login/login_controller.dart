@@ -13,6 +13,26 @@ class LoginController extends DefaultChangeNotifier {
 
   bool get hasInfo => infoMessage != null;
 
+  Future<void> googleLogin() async {
+    try {
+      showLoadingAndResetState();
+      infoMessage = null;
+      notifyListeners();
+      final user = await _userService.googleLogin();
+
+      if (user != null) {
+        success();
+      } else {
+        setError('Erro ao realizar login com o Google');
+      }
+    } on AuthException catch (e) {
+      setError(e.message);
+    } finally {
+      hideLoading();
+      notifyListeners();
+    }
+  }
+
   Future<void> login(String email, String password) async {
     try {
       showLoadingAndResetState();
@@ -40,8 +60,8 @@ class LoginController extends DefaultChangeNotifier {
       notifyListeners();
       await _userService.forgotPassword(email);
       infoMessage = 'Reset de senha enviado para o seu e-mail';
-    } on AuthException catch(e){
-        setError(e.message);
+    } on AuthException catch (e) {
+      setError(e.message);
     } catch (e) {
       setError('Erro ao resetar a senha');
     } finally {
