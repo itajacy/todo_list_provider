@@ -41,6 +41,7 @@ dependencies:
   # flutter_signin_button: ^2.0.0
   validatorless: ^1.2.3
   flutter_overlay_loader: ^2.0.0
+  google_sign_in: ^6.1.6
 
 
   # The following adds the Cupertino Icons font to your application.
