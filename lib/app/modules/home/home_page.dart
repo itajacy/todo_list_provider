@@ -9,7 +9,20 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Home Page'),
       ),
-      body: Container(),
+      body: Center(
+        child: TextButton(
+          child: Text(
+            'Logout',
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          onPressed: () {
+            Navigator.of(context).pushNamed('/login');
+          },
+        ),
+      ),
     );
   }
 }
