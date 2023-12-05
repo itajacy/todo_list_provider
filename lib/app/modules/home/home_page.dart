@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_list_provider/app/core/auth/auth_provider2.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -19,7 +21,8 @@ class HomePage extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            Navigator.of(context).pushNamed('/login');
+            context.read<AuthProvider2>().logout();
+            //Navigator.of(context).pushNamed('/login');
           },
         ),
       ),
