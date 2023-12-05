@@ -21,8 +21,8 @@ class UserRepositoryImpl implements UserRepository {
       print(s);
       if (e.code == 'email-already-in-use') {
         final loginTypes = await _firebaseAuth
-            .fetchSignInMethodsForEmail(email)
-            .timeout(Duration(seconds: 3));
+            .fetchSignInMethodsForEmail(email);
+            
         //!  como fazer para esperar um tempo para rodar
 
         //print('LOGINTYPES com e.code = email-already-in-use --> $loginTypes');
