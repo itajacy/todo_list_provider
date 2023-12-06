@@ -20,9 +20,9 @@ class UserRepositoryImpl implements UserRepository {
       print(e);
       print(s);
       if (e.code == 'email-already-in-use') {
-        final loginTypes = await _firebaseAuth
-            .fetchSignInMethodsForEmail(email);
-            
+        final loginTypes =
+            await _firebaseAuth.fetchSignInMethodsForEmail(email);
+
         //!  como fazer para esperar um tempo para rodar
 
         //print('LOGINTYPES com e.code = email-already-in-use --> $loginTypes');
@@ -124,10 +124,19 @@ class UserRepositoryImpl implements UserRepository {
       }
     }
   }
-  
+
   @override
   Future<User?> logout() async {
-   await GoogleSignIn().signOut();
-   _firebaseAuth.signOut();
+    await GoogleSignIn().signOut();
+    _firebaseAuth.signOut();
+  }
+
+  @override
+  Future<void> updateDisplayName(String name) async {
+    final user = _firebaseAuth.currentUser;
+    if (user != null) {
+      await user.updateDisplayName(name);
+      user.reload();
+    }
   }
 }
