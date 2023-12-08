@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_list_provider/app/core/ui/todo_list_icons.dart';
 import 'package:todo_list_provider/app/modules/home/widgets/home_drawer.dart';
 import 'package:todo_list_provider/app/core/ui/theme_extensions.dart';
+import 'package:todo_list_provider/app/modules/home/widgets/home_header.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -40,7 +41,7 @@ class HomePage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Rodrigo"),
+                      HomeHeader(),
                     ],
                   ),
                 ),
