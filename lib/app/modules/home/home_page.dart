@@ -26,7 +26,29 @@ class HomePage extends StatelessWidget {
       ),
       backgroundColor: Color(0xFFFAFBFE),
       drawer: HomeDrawer(),
-      body: Container(),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: constraints.maxHeight,
+                minWidth: constraints.maxWidth,
+              ),
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 20),
+                child: IntrinsicHeight(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Rodrigo"),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 }
