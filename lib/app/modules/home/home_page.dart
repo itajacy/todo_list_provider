@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_list_provider/app/core/ui/todo_list_icons.dart';
 import 'package:todo_list_provider/app/modules/home/widgets/home_drawer.dart';
 import 'package:todo_list_provider/app/core/ui/theme_extensions.dart';
+import 'package:todo_list_provider/app/modules/home/widgets/home_filters.dart';
 import 'package:todo_list_provider/app/modules/home/widgets/home_header.dart';
 
 class HomePage extends StatelessWidget {
@@ -42,6 +43,7 @@ class HomePage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       HomeHeader(),
+                      HomeFilters(),
                     ],
                   ),
                 ),
