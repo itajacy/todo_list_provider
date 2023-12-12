@@ -16,11 +16,27 @@ class HomePage extends StatelessWidget {
   void _goToCreateTask(BuildContext context) {
     // Navigator.of(context).pushNamed('/task/create');
 
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (_) => TasksModule().getPage('/task/create', context),
-      ),
-    );
+    // Navigator.of(context).push(
+    //   MaterialPageRoute(
+    //     builder: (_) => TasksModule().getPage('/task/create', context),
+    //   ),
+    // );
+
+    Navigator.of(context).push(PageRouteBuilder(
+      transitionDuration: Duration(milliseconds: 400),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        animation =
+            CurvedAnimation(parent: animation, curve: Curves.easeInQuad);
+        return ScaleTransition(
+          scale: animation,
+          alignment: Alignment.bottomRight,
+          child: child,
+        );
+      },
+      pageBuilder: (context, animation, secondaryAnimation) {
+        return TasksModule().getPage('/task/create', context);
+      },
+    ));
   }
 
   @override
