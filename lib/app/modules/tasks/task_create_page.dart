@@ -23,7 +23,7 @@ class TaskCreatePage extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () => Navigator.of(context).pop(),
-            icon: Icon(
+            icon: const Icon(
               Icons.close,
               color: Colors.black,
             ),
@@ -33,14 +33,14 @@ class TaskCreatePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: context.primaryColor,
         onPressed: () {},
-        label: Text(
+        label: const Text(
           'Salvar Task',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
       body: Form(
         child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 30),
+          margin: const EdgeInsets.symmetric(horizontal: 30),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,7 +52,7 @@ class TaskCreatePage extends StatelessWidget {
                   style: context.titleStyle.copyWith(fontSize: 20),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               TodoListField(
@@ -60,7 +60,7 @@ class TaskCreatePage extends StatelessWidget {
                 controller: descriptionEC,
                 validator: Validatorless.required('Descrição Obrigatória'),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               CalendarButton(),
