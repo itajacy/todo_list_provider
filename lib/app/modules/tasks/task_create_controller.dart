@@ -5,7 +5,8 @@ class TaskCreateController extends DefaultChangeNotifier {
   TasksService _tasksService;
   DateTime? _selectedDate;
 
-  TaskCreateController({required tasksService}) : _tasksService = tasksService;
+  TaskCreateController({required TasksService tasksService})
+      : _tasksService = tasksService;
 
   set selectedDate(DateTime? selectedDate) {
     _selectedDate = selectedDate;

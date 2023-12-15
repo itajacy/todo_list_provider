@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_list_provider/app/app_widget.dart';
 import 'package:todo_list_provider/app/core/auth/auth_provider2.dart';
+import 'package:todo_list_provider/app/core/database/sqlite_connection_factory.dart';
 import 'package:todo_list_provider/app/core/database/sqlite_migration_factory.dart';
 import 'package:todo_list_provider/app/repositories/user/user_repository.dart';
 import 'package:todo_list_provider/app/repositories/user/user_repository_impl.dart';
@@ -18,11 +19,16 @@ class AppModule extends StatelessWidget {
       providers: [
         Provider(create: (_) => FirebaseAuth.instance),
         Provider(
-          create: (context) => SqliteMigrationFactory(),
-          //! não será preguiçoso, executará e criará a instancia do sqlite na primeira vez
-          //! criando banco de dados, executando as migrations por isso deve ficar como "false"
+          create: (_) => SqliteConnectionFactory(),
           lazy: false,
         ),
+        // Provider(
+
+        //   // create: (context) => SqliteMigrationFactory(),
+        //   //! não será preguiçoso, executará e criará a instancia do sqlite na primeira vez
+        //   //! criando banco de dados, executando as migrations por isso deve ficar como "false"
+        //   lazy: false,
+        // ),
         //! o context.read() buscando do Provider a instancia do firebaseAuth
         Provider<UserRepository>(
           create: (context) => UserRepositoryImpl(firebaseAuth: context.read()),
