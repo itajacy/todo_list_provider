@@ -40,12 +40,13 @@ class _AppWidgetState extends State<AppWidget> {
       //initialRoute: '/login',
       theme: TodoListUiConfig.theme,
       navigatorKey: TodoListNavigator.navigatorKey,
+      loca
       routes: {
         ...AuthModule().routers,
         ...HomeModule().routers,
         ...TasksModule().routers,
       },
-      home: SplashPage(),
+      home: const SplashPage(),
     );
   }
 }
