@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:todo_list_provider/app/app_widget.dart';
 import 'package:todo_list_provider/app/core/auth/auth_provider2.dart';
 import 'package:todo_list_provider/app/core/database/sqlite_connection_factory.dart';
-import 'package:todo_list_provider/app/core/database/sqlite_migration_factory.dart';
+//  Eu errei aqui.. import 'package:todo_list_provider/app/core/database/sqlite_migration_factory.dart';
 import 'package:todo_list_provider/app/repositories/user/user_repository.dart';
 import 'package:todo_list_provider/app/repositories/user/user_repository_impl.dart';
 import 'package:todo_list_provider/app/services/user/user_service.dart';
