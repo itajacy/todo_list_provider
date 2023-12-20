@@ -104,6 +104,5 @@ class _TaskCreatePageState extends State<TaskCreatePage> {
     );
   }
 
-@override
-List<Object?> get props => [widget._controller, _descriptionEC, _formKey];
+
 }
