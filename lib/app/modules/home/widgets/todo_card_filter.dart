@@ -7,11 +7,13 @@ class TodoCardFilter extends StatelessWidget {
   final String label;
   final TaskFilterEnum taskFilter;
   final TotalTasksModel? totalTasksModel;
+  final bool selected;
 
   const TodoCardFilter({
     super.key,
     required this.label,
     required this.taskFilter,
+    required this.selected,
     this.totalTasksModel,
   });
 
@@ -37,7 +39,7 @@ class TodoCardFilter extends StatelessWidget {
       margin: EdgeInsets.only(right: 10),
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: context.primaryColor,
+        color: selected ? context.primaryColor : Colors.white,
         border: Border.all(
           width: 1,
           color: Colors.grey.withOpacity(0.8),
@@ -51,7 +53,7 @@ class TodoCardFilter extends StatelessWidget {
             '${totalTasksModel?.totalTasks ?? 0} TASKS',
             style: context.titleStyle.copyWith(
               fontSize: 10,
-              color: Colors.white,
+              color: selected ? Colors.white : Colors.grey,
             ),
           ),
           Text(
@@ -59,7 +61,7 @@ class TodoCardFilter extends StatelessWidget {
             style: context.titleStyle.copyWith(
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: selected ? Colors.white : Colors.black,
             ),
           ),
           TweenAnimationBuilder<double>(
@@ -70,8 +72,8 @@ class TodoCardFilter extends StatelessWidget {
             duration: Duration(seconds: 1),
             builder: (context, value, child) {
               return LinearProgressIndicator(
-                backgroundColor: context.primaryColorLight,
-                valueColor: AlwaysStoppedAnimation(Colors.white),
+                backgroundColor: selected ? context.primaryColorLight : Colors.grey.shade300,
+                valueColor: AlwaysStoppedAnimation(selected ? Colors.white : context.primaryColor),
                 value: value,
               );
             },
