@@ -34,12 +34,14 @@ class _RegisterPageState extends State<RegisterPage> {
   void initState() {
     super.initState();
     final defaultListener = DefaultListenerNotifier(
-        changeNotifier: context.read<RegisterController>());
+      changeNotifier: context.read<RegisterController>(),
+    );
     defaultListener.listener(
       context: context,
       successCallback: (notifier, listenerInstance) {
         listenerInstance.dispose();
-        Navigator.of(context).pop();
+        // removemos  esse pop devido a alteração no AuthProvider
+        // Navigator.of(context).pop();
       },
       errorCallback: (notifier, listenerInstance) {
         // print('Deu ruim!');
