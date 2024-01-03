@@ -40,7 +40,7 @@ class _RegisterPageState extends State<RegisterPage> {
       context: context,
       successCallback: (notifier, listenerInstance) {
         listenerInstance.dispose();
-        // removemos  esse pop devido a alteração no AuthProvider
+        // removemos  esse pop devido a alteração no AuthProvider2
         // Navigator.of(context).pop();
       },
       errorCallback: (notifier, listenerInstance) {
