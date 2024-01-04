@@ -2,6 +2,9 @@
 
 // Aspire 5 win 11 SHA1:   EF:31:12:EF:1F:D3:38:8C:CE:0C:CC:F2:1B:56:83:B7:4F:7B:FE:E0
 
+// AINDA NÃO CONSEGUI CRIAR UMM CHAVE SHA1 PARA O MAC, acredito que isso ocorra
+// por causa do chaveamento entre as versões do JAVA, preciso averiguar melhor isso
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_list_provider/app/app_module.dart';
