@@ -1,4 +1,3 @@
-
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,18 +28,24 @@ class HomeWeekFilter extends StatelessWidget {
           ),
           SizedBox(
             height: 106,
-            child: DatePicker(
-              DateTime.now(),
-              locale: 'pt_BR',
-              height: 500,
-              width: 70,
-              initialSelectedDate: DateTime.now(),
-              selectionColor: context.primaryColor,
-              selectedTextColor: Colors.white,
-              daysCount: 7,
-              monthTextStyle: TextStyle(fontSize: 8),
-              dayTextStyle: TextStyle(fontSize: 13),
-              dateTextStyle: TextStyle(fontSize: 13),
+            child: Selector<HomeController, DateTime>(
+              selector: (context, controller) =>
+                  controller.initialDateOfWeek ?? DateTime.now(),
+              builder: (_, value, __) {
+                return DatePicker(
+                  value,
+                  locale: 'pt_BR',
+                  height: 500,
+                  width: 70,
+                  initialSelectedDate: DateTime.now(),
+                  selectionColor: context.primaryColor,
+                  selectedTextColor: Colors.white,
+                  daysCount: 7,
+                  monthTextStyle: TextStyle(fontSize: 8),
+                  dayTextStyle: TextStyle(fontSize: 13),
+                  dateTextStyle: TextStyle(fontSize: 13),
+                );
+              },
             ),
           ),
         ],
